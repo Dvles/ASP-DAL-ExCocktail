@@ -1,27 +1,23 @@
-﻿@using Microsoft.AspNetCord.Http.Features
+﻿@using Microsoft.AspNetCore.Http.Features
 @{
-ITrackingConsentFeature? consentFeature = Context.Features.Get<ITrackingConsentFeature>();
-bool showBanner = !consentFeature?.CanTrack ?? false;
-string? cookieString = consentFeature?.CreateConsentCookie();
+    ITrackingConsentFeature? consentFeature = Context.Features.Get<ITrackingConsentFeature>();
+    bool showBanner = !consentFeature?.CanTrack ?? false;
+    string? cookieString = consentFeature?.CreateConsentCookie();
 }
 
-@if(showBanner){
-
-	<div id="cookieConsent" class="alert alert-info alert-dissmissible fade show" role="alert">
-
-		Ce site utilise des cookies essentiels au bon fonctionnement de la plateforme.<br />
-		<a asp-action ="privacy" asp-controller="home"> En savoir plus</a>
-		<button type="button" class="accept-policy btn-close btn-close btn-outline-success rounded-pill" data-bs-dismiss="alert" aria-label="Close" data-cookie-string="@cookieString">Accepter</button>
-
-	</div>
-	<script>
-		(function (){
-			let button = document.querySelector('#cookieConsent button[data-cookie-string]')
-			button.addEventListener('click', function (event) {
-				document.cookie = button.dataset.cookieString;
-
-			}, false );
-		})();
-
-	</script>
+@if (showBanner)
+{
+    <div id="cookieConsent" class="alert alert-info alert-dismissible fade show" role="alert">
+        Ce site utilise des cookies essentiels au bon fonctionnement de la plateforme.<br />
+        <a asp-action="privacy" asp-controller="home"> En savoir plus</a>
+        <button type="button" class="accept-policy btn-close btn-close btn-outline-success rounded-pill" data-bs-dismiss="alert" aria-label="Close" data-cookie-string="@cookieString">Accepter</button>
+    </div>
+    <script>
+        (function (){
+            let button = document.querySelector('#cookieConsent button[data-cookie-string]');
+            button.addEventListener('click', function (event) {
+                document.cookie = button.dataset.cookieString;
+            }, false );
+        })();
+    </script>
 }
