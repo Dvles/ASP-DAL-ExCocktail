@@ -11,6 +11,9 @@ namespace ASP_MVC
 			// Add services to the container.
 			builder.Services.AddControllersWithViews();
 
+			// Ajout d'implémentation du servicde d'accés à l'HttpContext (dans le but d'atteindre nos variables de session en dehors du controller ou de la vue
+			builder.Services.AddHttpContextAccessor();
+
 			// Ajout d'appel des services nécessaire à l'utilisation de session:
 			builder.Services.AddDistributedMemoryCache();
 			builder.Services.AddSession(
