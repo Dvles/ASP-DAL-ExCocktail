@@ -31,7 +31,16 @@ namespace ASP_MVC
                 app.UseHsts();
             }
 
-            app.UseSession();
+            app.UseSession(
+               
+                options =>
+                {
+                    options.Cookie.Name = "CookieWad24",
+                    options.Cookie.HttpOnly = true,
+                    options.IdleTime = TimeSpan.FromMinutes(10);
+
+                }
+            );
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
