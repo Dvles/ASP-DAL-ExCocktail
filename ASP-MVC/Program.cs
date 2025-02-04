@@ -22,6 +22,11 @@ namespace ASP_MVC
 				});
             );
 
+            // Configuration des options cookies
+            builder.Services.Configure<CookiePolicyOptions>(options => {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+                options.Secure = CookieSecurePolicy.Always
 
 
             //Ajout de nos services : Ceux de la BLL et ceux de la DAL
