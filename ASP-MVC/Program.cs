@@ -13,7 +13,16 @@ namespace ASP_MVC
 
             // Ajout d'appel des services nécessaire à l'utilisation de session:
             builder.Services.AddDistributedMemoryCache();
-            builder.Services.AddSession();
+            builder.Services.AddSession(
+				options => {
+					options.Cookie.Name = "CookieWad24";
+					options.Cookie.HttpOnly = true;
+					options.Cookie.IsEssential = true;
+					options.IdleTime = TimeSpan.FromMinutes(10);
+				});
+            );
+
+
 
             //Ajout de nos services : Ceux de la BLL et ceux de la DAL
             builder.Services.AddScoped<IUserRepository<BLL.Entities.User>, BLL.Services.UserService>();
@@ -31,16 +40,8 @@ namespace ASP_MVC
                 app.UseHsts();
             }
 
-            app.UseSession(
-               
-                options =>
-                {
-                    options.Cookie.Name = "CookieWad24",
-                    options.Cookie.HttpOnly = true,
-                    options.IdleTime = TimeSpan.FromMinutes(10);
-
-                }
-            );
+            app.UseSession();
+            app.UseCookiePolicy();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
