@@ -11,6 +11,7 @@ string? cookieString = consentFeature?.CreateConsentCookie();
 
 	Ce site utilise des cookies essentiels au bon fonctionnement de la plateforme.<br />
 	<a asp-action ="privacy" asp-controller="home"> En savoir plus</a>
+	<button type="button" class="accept-policy btn-close btn-close btn-outline-success rounded-pill" data-bs-dismiss="alert" aria-label="Close" data-cookie-string="@cookieString">Accepter</button>
 
 </div>
 }
