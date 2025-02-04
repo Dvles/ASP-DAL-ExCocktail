@@ -31,6 +31,8 @@ namespace ASP_MVC
                 app.UseHsts();
             }
 
+            app.UseSession();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
