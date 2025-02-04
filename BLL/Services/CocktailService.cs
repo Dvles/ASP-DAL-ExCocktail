@@ -14,7 +14,11 @@ namespace BLL.Services
         private ICocktailRepository<DAL.Entities.Cocktail> _cocktailService;
         private IUserRepository<DAL.Entities.User> _userService;
 
-        public CocktailService(
+		public CocktailService()
+		{
+		}
+
+		public CocktailService(
             ICocktailRepository<DAL.Entities.Cocktail> cocktailService,
             IUserRepository<DAL.Entities.User> userService
             )
